@@ -32,12 +32,10 @@ $app->get('/', function (Request $request) use ($app) {
 });
 
 $app->get('/list', function (Request $request) use ($app) {
-
     $locations = $app['db']->fetchAll('SELECT * FROM locations');
     $response = new JsonResponse();
     $response->setData($locations);
     return $response;
-
 });
 
 $app->get('/detail/{id}', function ($id) use ($app) {
