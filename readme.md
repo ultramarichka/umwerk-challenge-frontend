@@ -63,7 +63,7 @@ should return
 
 ## Installation of silex project ##
 
-### composer ### 
+### composer ###
 project uses composer to install required libraries
 
 ```
