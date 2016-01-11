@@ -1,5 +1,8 @@
 # Umwerk Challenge
 
+In order to get an idea of the level and scope of your knowledge we have prepared a small test project. 
+This test is designed for frontend developers.
+
 Small [silex](http://silex.sensiolabs.org/) project to show [umwerk](http://www.umwerk.com) locations on a map.
 Use the [Google Maps Api](https://developers.google.com/maps/?hl=de) to create a marker 
 for each location. When one clicks on the location marker, it should open a modal window which 
@@ -91,9 +94,13 @@ see *umwerk_locations.sql* to create table with location entries
 
 
 
-## TODO ##
+## TODOs ##
 
 1. Add html structure & map to index.twig
-2. Add javascript to query locations
-3. Add javascript to query detail of location
+2. Add javascript to query locations & append them to the dom ( create google maps marker with lat/lng )
+3. Add click event to marker which opens a modal window
+4. Add javascript to query detail of location & show them in the modal window
+
+## The result ##
+Please make sure you put everything that is necessary to run your project into a compressed file.
 
