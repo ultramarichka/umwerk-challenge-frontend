@@ -84,7 +84,9 @@ see *umwerk_locations.sql* to create table with location entries
 
 ## Informations ##
 [Silex Basic Usage](http://silex.sensiolabs.org/doc/usage.html)
+
 [Twig Documentation](http://twig.sensiolabs.org/documentation)
+
 [jQuery (if needed)](http://api.jquery.com/jquery.ajax/)
 
 
