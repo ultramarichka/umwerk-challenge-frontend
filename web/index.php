@@ -17,7 +17,7 @@ $app->register(new Silex\Provider\DoctrineServiceProvider(), array(
             'host' => 'localhost',
             'dbname' => 'umwerk_locations',
             'user' => 'root',
-            'password' => '',
+            'password' => 'peter1',
             'charset' => 'utf8mb4'
         )
     )
@@ -31,7 +31,8 @@ $app->get('/', function (Request $request) use ($app) {
     return $app['twig']->render('index.twig');
 });
 
-$app->get('/list', function (Request $request) use ($app) {
+$app->get('/list/',
+function (Request $request) use ($app) {
     $locations = $app['db']->fetchAll('SELECT * FROM locations');
     $response = new JsonResponse();
     $response->setData($locations);

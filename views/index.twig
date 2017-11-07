@@ -1,8 +1,75 @@
 <html>
-<head>
+  <head>
+    <title>umwerk locations Map</title>
+    <meta name="viewport" content="initial-scale=1.0">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js'></script>
+    
 
-</head>
-<body>
-Put map here
-</body>
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 100%;
+      }
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXnjpAOKvN2vGYDN-WNxG7PO4UMmo8Cs4&callback=initMap"
+    async defer></script>
+      <script>
+        var map;
+                
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 48.052, lng: 11.524},
+            zoom: 6
+          });
+
+        //get data from index.php json
+        var url = "/list/";
+        $.getJSON(url, successCallback); 
+
+        function successCallback(response){ 
+          for (var i = 0; i < response.length; i++){
+     
+            //marker        
+            var lat_i = Number(response[i].lat);
+            var lng_i = Number(response[i].lng);
+            var umwerk_office_location = {lat: lat_i, lng: lng_i};
+            var marker = new google.maps.Marker({
+              position: umwerk_office_location,
+              map: map,
+            });
+            //if there are two places on the map with the same adress
+            var name;
+            for (var j = response.length-1; j>0; j--){
+              if (response[i].address == response[j].address && i !==j){
+                name = response[i].name + " && " + response[j].name;
+              } else {
+                name = response[i].name;
+              }
+            }
+            //infoWindow
+            var contentString = "<h2>"+response[i].city+"</h2>"+ name + "</br></br>" +response[i].zip + " "+ response[i].city + "</br>" + response[i].address + "</br>"+ response[i].phone;
+            var infoWindow = new google.maps.InfoWindow();
+            
+            google.maps.event.addListener(marker, 'click', (function(marker, content, infoWindow) {
+              return function() {
+                infoWindow.setContent(content);
+                infoWindow.open(map, marker);
+              };
+            })(marker, contentString, infoWindow));
+          }
+        }   
+        
+      }
+      </script>
+
+    </div>
+  </body>
 </html>
